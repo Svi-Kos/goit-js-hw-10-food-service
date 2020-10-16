@@ -18,19 +18,15 @@ themeSwitchToggle.addEventListener('change', changeTheme);
 
 const currentTheme = localStorage.getItem('currentTheme');
 
-bodyTheme.classList.add(currentTheme);
+bodyTheme.classList.add(currentTheme || Theme.LIGHT);
 
 if (currentTheme === Theme.DARK) {
   themeSwitchToggle.checked = true;
 }
 
-function changeTheme(evt) {
-  // themeSwitchToggle.checked = true;
-  const theme = evt.currentTarget.checked
-    ? (bodyTheme.classList.add(Theme.DARK),
-      bodyTheme.classList.remove(Theme.LIGHT))
-    : (bodyTheme.classList.add(Theme.LIGHT),
-      bodyTheme.classList.remove(Theme.DARK));
+function changeTheme() {
+  bodyTheme.classList.toggle(Theme.DARK);
+  bodyTheme.classList.toggle(Theme.LIGHT);
 
   localStorage.setItem('currentTheme', bodyTheme.classList);
 }
